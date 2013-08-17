@@ -1,25 +1,25 @@
 global.$ = $;
 
 var addressBar = require('addressBar')
-    ,folder_view = require('folderView')
+    ,folderView = require('folderView')
     ,shell = require('nw.gui').Shell;
 
 $(document).ready(function() {
-    var folder = new folder_view.Folder($('#files'))
-        ,addressBar = new addressBar.AddressBar($('#addressBar'));
+    var folder = new folderView.Folder($('#files'))
+        ,bar = new addressBar.AddressBar($('#bar'));
 
     folder.open(process.cwd());
-    addressBar.set(process.cwd());
+    bar.set(process.cwd());
 
     folder.on('navigate', function(dir, mime) {
         if (mime.type == 'folder') {
-            addressBar.enter(mime);
+            bar.enter(mime);
         } else {
             shell.openItem(mime.path);
         }
     });
 
-    addressBar.on('navigate', function(dir) {
+    bar.on('navigate', function(dir) {
         folder.open(dir);
     });
 });
