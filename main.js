@@ -1,7 +1,7 @@
 global.$ = $;
 
-var abar = require('address_bar');
-var folder_view = require('folder_view');
+var abar = require('addressBar');
+var folder_view = require('folderView');
 var path = require('path');
 var shell = require('nw.gui').Shell;
 
