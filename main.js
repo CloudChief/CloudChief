@@ -6,7 +6,7 @@ var addressBar = require('addressBar')
 
 $(document).ready(function() {
     var folder = new folderView.Folder($('#files'))
-        ,bar = new addressBar.AddressBar($('#bar'));
+        ,bar = new addressBar.AddressBar($('#addressBar'));
 
     folder.open(process.cwd());
     bar.set(process.cwd());
