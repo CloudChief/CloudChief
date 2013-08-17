@@ -1,26 +1,25 @@
 global.$ = $;
 
-var abar = require('addressBar');
-var folder_view = require('folderView');
-var path = require('path');
-var shell = require('nw.gui').Shell;
+var addressBar = require('addressBar')
+    ,folder_view = require('folderView')
+    ,shell = require('nw.gui').Shell;
 
 $(document).ready(function() {
-  var folder = new folder_view.Folder($('#files'));
-  var addressbar = new abar.AddressBar($('#addressbar'));
+    var folder = new folder_view.Folder($('#files'))
+        ,addressBar = new addressBar.AddressBar($('#addressBar'));
 
-  folder.open(process.cwd());
-  addressbar.set(process.cwd());
+    folder.open(process.cwd());
+    addressBar.set(process.cwd());
 
-  folder.on('navigate', function(dir, mime) {
-    if (mime.type == 'folder') {
-      addressbar.enter(mime);
-    } else {
-      shell.openItem(mime.path);
-    }
-  });
+    folder.on('navigate', function(dir, mime) {
+        if (mime.type == 'folder') {
+            addressBar.enter(mime);
+        } else {
+            shell.openItem(mime.path);
+        }
+    });
 
-  addressbar.on('navigate', function(dir) {
-    folder.open(dir);
-  });
+    addressBar.on('navigate', function(dir) {
+        folder.open(dir);
+    });
 });
